@@ -1,5 +1,7 @@
 using Microsoft.OpenApi.Models;
 using Serilog;
+using WorkerServiceAPI;
+using WorkerServiceAPI.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +11,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c=>c.SwaggerDoc("v1", new OpenApiInfo {Title="WorkerServiceAPI", Version="v1" }));
+builder.Services.AddHostedService<Worker>();
+builder.Services.AddScoped<ILoggerService, LoggerService>();
 builder.Services.AddWindowsService();
+builder.Services.AddSerilog();
 
 //Agregando serilog
 Log.Logger = new LoggerConfiguration()
@@ -27,7 +32,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(c=>c.SwaggerEndpoint("/swagger/v1/swagger.json","WorkerServiceAPI v1"));
 }
-
 
 app.UseHttpsRedirection();
 

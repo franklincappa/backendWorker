@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WorkerServiceAPI.Service;
 
 namespace WorkerServiceAPI.Controllers
 {
@@ -8,8 +9,10 @@ namespace WorkerServiceAPI.Controllers
     public class HomeController : ControllerBase
     {
         private readonly ILogger<HomeController> _logger;
-        public HomeController(ILogger<HomeController> logger) {
+        private readonly ILoggerService _loggerService;
+        public HomeController(ILogger<HomeController> logger, ILoggerService loggerService) {
             _logger = logger;
+            _loggerService = loggerService;
         }
 
         [HttpGet]
@@ -18,6 +21,7 @@ namespace WorkerServiceAPI.Controllers
         {
             //definir servicio que escriba en el log
             _logger.LogInformation("Entrada Controller");
+            _loggerService.WriteInLog(cadena);
             return Ok();
         }
     }
