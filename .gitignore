@@ -134,3 +134,4 @@ _NCrunch*
 .vs/*.*
 /WorkerServiceAPI/.vs/WorkerServiceAPI/FileContentIndex
 /WorkerServiceAPI/.vs/WorkerServiceAPI/DesignTimeBuild/.dtbcache.v2
+/WorkerServiceAPI/.config
