@@ -25,7 +25,7 @@ namespace WorkerServiceAPI
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             //funcionalidad de escribir en el log
-            while(stoppingToken.IsCancellationRequested) 
+            while(!stoppingToken.IsCancellationRequested) 
             {
                 _logger.LogTrace("El servicio sigue ejecutandose correctamente");
                 await Task.Delay(60000, stoppingToken);

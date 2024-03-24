@@ -1,16 +1,17 @@
-﻿namespace WorkerServiceAPI.Service
+﻿using Serilog;
+
+namespace WorkerServiceAPI.Service
 {
     public class LoggerService : ILoggerService
     {
-        private readonly ILogger<LoggerService> _logger;
 
-        public LoggerService(ILogger<LoggerService> logger)
+        public LoggerService()
         {
-            _logger = logger;
+
         }
         public void WriteInLog(string cadena)
         {
-            _logger.LogWarning(cadena);
+            Log.Information(cadena);
         }
     }
 }
